@@ -24,7 +24,8 @@ class BaseCommand:
         proc = await asyncio.create_subprocess_shell(
             cls.command,
             stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE)
+            stderr=asyncio.subprocess.PIPE
+        )
 
         stdout, stderr = await proc.communicate()
         return Result(
