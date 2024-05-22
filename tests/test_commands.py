@@ -1,9 +1,9 @@
 from unittest.mock import AsyncMock, patch
 
-from pi_checker.commands import MeasureTemperature, MeasureVoltage, DiskFree
-from pi_checker.runners import BaseCommand
 import pytest
 
+from pi_checker.commands import DiskFree, MeasureTemperature, MeasureVoltage
+from pi_checker.runners import BaseCommand
 from tests.data_factory.result import ResultFactory
 
 
@@ -154,7 +154,7 @@ async def test_command_run_with_failed_result(process_command_mock: AsyncMock, c
 
     process_command_mock.return_value = ResultFactory.create(stderr='some error', return_code=1)
     await MockedCommand.run()
-    assert MockedCommand.error_message == f'Error while execute command: some error'
+    assert MockedCommand.error_message == 'Error while execute command: some error'
 
 
 @pytest.mark.asyncio
@@ -164,16 +164,17 @@ async def test_command_run_with_failed_result(process_command_mock: AsyncMock, c
         (BaseCommand, 'Success, Bro'),
         (MeasureTemperature, 'temp=38.6\'C'),
         (MeasureVoltage, 'volt=1.3312V'),
-        (DiskFree, """
-            Filesystem      Size  Used Avail Use% Mounted on
-            /dev/root        15G  3.6G   11G  26% /
-            devtmpfs        333M     0  333M   0% /dev
-            tmpfs           461M     0  461M   0% /dev/shm
-            tmpfs           185M  1.1M  184M   1% /run
-            tmpfs           5.0M  4.0K  5.0M   1% /run/lock
-            /dev/mmcblk0p1  255M   51M  205M  20% /boot
-            tmpfs            93M   20K   93M   1% /run/user/1000
-        """
+        (
+            DiskFree, """
+                Filesystem      Size  Used Avail Use% Mounted on
+                /dev/root        15G  3.6G   11G  26% /
+                devtmpfs        333M     0  333M   0% /dev
+                tmpfs           461M     0  461M   0% /dev/shm
+                tmpfs           185M  1.1M  184M   1% /run
+                tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+                /dev/mmcblk0p1  255M   51M  205M  20% /boot
+                tmpfs            93M   20K   93M   1% /run/user/1000
+            """
         )
     ]
 )
