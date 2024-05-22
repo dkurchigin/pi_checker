@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Type
 from enum import Enum
+from typing import Type
 
 from pi_checker.commands import BaseCommand
 
@@ -16,5 +16,5 @@ class BaseRunner:
     error_message: str | None = None
 
     @classmethod
-    async def get_result(cls, command_class: Type[BaseCommand]):
+    async def get_result(cls, command_class: Type[BaseCommand]) -> None:
         await command_class.run()

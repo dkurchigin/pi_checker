@@ -13,14 +13,14 @@ class BaseCommand:
     error_message: str | None = None
 
     @classmethod
-    def validate(cls):
-        if cls.result.stdout == '':
+    def validate(cls) -> None:
+        if cls.result.stdout == '':  # type: ignore
             cls.error_message = 'Stdout is Empty'
         else:
             cls.is_success = True
 
     @classmethod
-    async def process_command(cls):
+    async def process_command(cls) -> Result:
         proc = await asyncio.create_subprocess_shell(
             cls.command,
             stdout=asyncio.subprocess.PIPE,
@@ -35,7 +35,7 @@ class BaseCommand:
         )
 
     @classmethod
-    async def run(cls):
+    async def run(cls) -> None:
         try:
             cls.result = await cls.process_command()
 
@@ -53,9 +53,9 @@ class MeasureTemperature(BaseCommand):
     command = 'vcgencmd measure_temp'
 
     @classmethod
-    def validate(cls):
+    def validate(cls) -> None:
         pattern = r'temp\=(\d+?\.\d+?).*?'
-        matched_result = re.search(pattern=pattern, string=cls.result.stdout)
+        matched_result = re.search(pattern=pattern, string=cls.result.stdout)  # type: ignore
 
         if matched_result is None:
             cls.error_message = 'Can\'t get measure temperature'
@@ -71,9 +71,9 @@ class MeasureVoltage(BaseCommand):
     command = 'vcgencmd measure_volts'
 
     @classmethod
-    def validate(cls):
+    def validate(cls) -> None:
         pattern = r'volt\=(\d+?\.\d+?)V'
-        matched_result = re.search(pattern=pattern, string=cls.result.stdout)
+        matched_result = re.search(pattern=pattern, string=cls.result.stdout)  # type: ignore
 
         if matched_result is None:
             cls.error_message = 'Can\'t get measure voltage'
@@ -89,9 +89,9 @@ class DiskFree(BaseCommand):
     command = 'df -h'
 
     @classmethod
-    def validate(cls):
+    def validate(cls) -> None:
         pattern = r'\/dev\/root.*?(\d+)%.*?\/'
-        matched_result = re.search(pattern=pattern, string=cls.result.stdout)
+        matched_result = re.search(pattern=pattern, string=cls.result.stdout)  # type: ignore
 
         if matched_result is None:
             cls.error_message = 'Can\'t get disk free'
