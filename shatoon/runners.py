@@ -3,12 +3,12 @@ from __future__ import annotations
 from enum import Enum
 from typing import Type
 
-from pi_checker.commands import BaseCommand
+from shatoon.commands import BaseCommand
 
 
 class CheckType(str, Enum):
-    warning = 'WARNING'
-    error = 'ERROR'
+    warning = "WARNING"
+    error = "ERROR"
 
 
 class BaseRunner:

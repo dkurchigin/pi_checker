@@ -13,7 +13,7 @@ class Result(BaseModel):  # type: ignore
     @computed_field  # type: ignore
     @property
     def is_failed(self) -> bool:
-        if self.stderr != '' or self.return_code != 0:
+        if self.stderr != "" or self.return_code != 0:
             return True
 
         return False

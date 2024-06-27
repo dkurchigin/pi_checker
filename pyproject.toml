@@ -1,0 +1,22 @@
+[project]
+name = "shatoon"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "dkurchigin", email = "kurchigin.dmitry@yandex.ru"},
+]
+dependencies = []
+requires-python = "==3.9.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.ruff]
+line-length = 120
+
+
+[tool.ruff.lint]
+extend-select = ['F', 'I', 'N', 'T', 'RUF']
