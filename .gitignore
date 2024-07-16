@@ -161,3 +161,4 @@ cython_debug/
 .python-version
 .ruff_cache
 .pdm-python
+pdm.lock
