@@ -5,7 +5,12 @@ description = "Default template for PDM package"
 authors = [
     {name = "dkurchigin", email = "kurchigin.dmitry@yandex.ru"},
 ]
-dependencies = []
+dependencies = [
+    "pydantic>=2.7.4",
+    "aiohttp>=3.9.5",
+    "pydantic-settings>=2.3.4",
+    "aiohttp-jinja2>=1.6",
+]
 requires-python = "==3.9.*"
 readme = "README.md"
 license = {text = "MIT"}
