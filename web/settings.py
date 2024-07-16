@@ -5,14 +5,14 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    name: str = 'My Raspberry'
-    location: str = 'Home'
-    host: str = '127.0.0.1'
+    name: str = "My Raspberry"
+    location: str = "Home"
+    host: str = "127.0.0.1"
     port: int = 8100
     updated_at: Union[datetime, None] = None
 
     model_config = SettingsConfigDict(
-        extra='ignore',
-        env_file='.env',
-        env_file_encoding='utf-8',
+        extra="ignore",
+        env_file=".env",
+        env_file_encoding="utf-8",
     )
