@@ -18,3 +18,4 @@ class BaseRunner:
     @classmethod
     async def get_result(cls, command_class: Type[BaseCommand]) -> None:
         await command_class.run()
+        print(command_class.is_success)
