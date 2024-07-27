@@ -4,7 +4,7 @@ from typing import Union
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Settings(BaseSettings):
+class Settings(BaseSettings):  # type: ignore
     name: str = "My Raspberry"
     location: str = "Home"
     host: str = "127.0.0.1"
