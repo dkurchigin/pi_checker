@@ -33,3 +33,6 @@ async def save_settings(request):
             env_file.write(f'{key.upper()}="{value}"\n')
 
     return {"settings": settings_map}
+
+
+
